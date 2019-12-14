@@ -1,4 +1,6 @@
-public class Student extends User{
+package projectsObjects;
+
+public class Student extends User {
     private String id;
     public Student(String userName, String password,String id) {
         super(userName, password);

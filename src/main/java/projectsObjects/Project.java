@@ -1,3 +1,5 @@
+package projectsObjects;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -117,11 +119,15 @@ public class Project {
     }
 
     public boolean addStudent(String toAdd){
-        if(this.studentList.contains(toAdd)){
+        if(!this.studentList.contains(toAdd)){
             this.studentList.add(toAdd);
             return true;
         }
         return false;
+    }
+
+    public void clearStudentsList(){
+        this.studentList.clear();
     }
 }
 

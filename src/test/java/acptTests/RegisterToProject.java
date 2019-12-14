@@ -62,7 +62,7 @@ public class RegisterToProject extends ProjectTest {
         registeredProject1.studentList.add(DBData.studentIDs[2]);
         registeredProject1.studentList.add(DBData.studentIDs[3]);
         int registeredProject=this.registerToProject(DBData.students[1][USER_USER],DBData.students[1][USER_PASS], registeredProject1);
-        assertEquals("Project cannot be  registered by more than one team", registeredProject,0);
+        assertEquals("projectsObjects.Project cannot be  registered by more than one team", registeredProject,0);
     }
 
 
