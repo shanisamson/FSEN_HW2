@@ -18,8 +18,8 @@ public class RealProjectWebsite implements Component, ProjectWebsite {
     }
 
     @Override
-    public boolean isLimited(String id) {
-        return limited && (!this.project.getStudentList().contains(id));
+    public boolean isLimited(String studentId) {
+        return limited && (!this.project.getStudentList().contains(studentId));
     }
 
     @Override

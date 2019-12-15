@@ -3,11 +3,11 @@ package projectSystem.projectsObjects;
 import projectSystem.intefaces.Component;
 import projectSystem.intefaces.ProjectWebsite;
 
-public class ProxyProjectWebSite implements ProjectWebsite, Component {
+public class ProxyProjectWebsite implements ProjectWebsite{
 
     private ProjectWebsite realWebsite;
 
-    public ProxyProjectWebSite(ProjectWebsite real) {
+    public ProxyProjectWebsite(ProjectWebsite real) {
         this.realWebsite = real;
     }
 
@@ -26,20 +26,17 @@ public class ProxyProjectWebSite implements ProjectWebsite, Component {
     @Override
     public void showSite(String studentId) {
         if(!isAllowed(studentId)){
-            this.show();
+            System.out.println("Access Denied");
         }
         else {
             this.realWebsite.showSite(studentId);
         }
     }
 
-    @Override
-    public void show() {
-        System.out.println("ACCESS DENIED");
-    }
+
 
     @Override
-    public boolean isLimited(String id) {
+    public boolean isLimited(String studentId) {
         return false;
     }
 }
