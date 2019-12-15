@@ -2,7 +2,7 @@ package bridgeProject;
 
 import acptTests.auxiliary.DBRegisteredProjectInfo;
 import acptTests.auxiliary.DBSuggestedProjectInfo;
-import projectsObjects.DataManager;
+import projectSystem.DataManager;
 
 
 public class BridgeReal implements BridgeProject {

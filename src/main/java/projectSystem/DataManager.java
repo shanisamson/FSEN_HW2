@@ -1,20 +1,24 @@
-package projectsObjects;
+package projectSystem;
+
+import projectSystem.intefaces.Observer;
+import projectSystem.intefaces.Subject;
+import projectSystem.projectsObjects.Project;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class DataManager {
+public class DataManager implements Observer {
     private Map<String, String> registeredStudents;
     private Map<String, String> registeredAdvisors;
     private Map<Integer, Project> registeredProjects;
+    private List<Project> approvedProjects;
 
 
     public DataManager() {
         this.registeredAdvisors = new HashMap<>();
         this.registeredStudents = new HashMap<>();
         this.registeredProjects = new HashMap<>();
+        this.approvedProjects = new Vector<>();
     }
 
     public Map<String, String> getRegisteredStudents() {
@@ -136,6 +140,16 @@ public class DataManager {
         }
         return projectId;
 
+    }
+
+    @Override
+    public void update(Subject changedSubject) {
+       if(changedSubject instanceof Project){
+           Project p = (Project) changedSubject;
+           if(!this.approvedProjects.contains(p)){
+               this.approvedProjects.add(p);
+           }
+       }
     }
 
 

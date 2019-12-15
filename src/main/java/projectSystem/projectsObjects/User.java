@@ -1,4 +1,4 @@
-package projectsObjects;
+package projectSystem.projectsObjects;
 
 public class User {
     protected String userName;

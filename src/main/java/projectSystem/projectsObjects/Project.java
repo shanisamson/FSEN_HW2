@@ -1,9 +1,14 @@
-package projectsObjects;
+package projectSystem.projectsObjects;
+
+import projectSystem.intefaces.Observer;
+import projectSystem.intefaces.Subject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
-public class Project {
+public class Project  implements Subject {
 
     public enum ProjectStatus{
         IN_VALIDATION_PROCESS, APPROVED,REJECTED,IN_PROGRESS
@@ -28,6 +33,17 @@ public class Project {
     private String academicAdviser;
     private LocalDate suggestionDate;
     private ProjectStatus status;
+    private String descriptionUrl;
+
+    public String getDescriptionUrl() {
+        return descriptionUrl;
+    }
+
+    public void setDescriptionUrl(String descriptionUrl) {
+        this.descriptionUrl = descriptionUrl;
+    }
+
+    private List<Observer> _observers;
 
     public Project(String suggesterFirstName, String suggesterLastName, String phone,
                    String email, String organization, String projectName,
@@ -45,6 +61,7 @@ public class Project {
         this.academicAdviser = null;
         this.suggestionDate = LocalDate.now();
         this.status = ProjectStatus.IN_VALIDATION_PROCESS;
+        this._observers = new Vector<>();
     }
 
     public static int getCurrentProjectCode() {
@@ -57,6 +74,7 @@ public class Project {
 
     public void setStatus(ProjectStatus status) {
         this.status = status;
+        this.notify_all(); // notifying all students about the status change.
     }
 
     public String getSuggesterFirstName() {
@@ -128,6 +146,24 @@ public class Project {
 
     public void clearStudentsList(){
         this.studentList.clear();
+    }
+
+    @Override
+    public void attach(Observer o) {
+        if(!this._observers.contains(o)){
+            this._observers.add(o);
+        }
+    }
+    @Override
+    public void detach(Observer o) {
+        this._observers.remove(o);
+    }
+
+    @Override
+    public void notify_all() {
+        for(Observer o : _observers){
+            o.update(this);
+        }
     }
 }
 
