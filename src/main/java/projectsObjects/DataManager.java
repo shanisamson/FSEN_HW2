@@ -33,15 +33,15 @@ public class DataManager {
         addToMapIfPossible(this.registeredAdvisors, name, password);
     }
 
-    private void addToMapIfPossible(Map<String, String> map, String key, String value) {
-       /** if (checkValidField(key) || checkValidField(value)) {
+    private boolean addToMapIfPossible(Map<String, String> map, String key, String value) {
+       if (!checkValidField(key) || !checkValidField(value)) {
             return false; // these fields cannot be empty
         }
         if (map.containsKey(key)) {
             return false; // student already exists
-        }*/
+        }
         map.put(key, value);
-        //return true;
+        return true;
     }
 
     private boolean checkValidField(String field) {
@@ -49,7 +49,8 @@ public class DataManager {
     }
 
     private boolean checkRegistered(Map<String,String> map, String key,String password){
-        if(key == null || password == null){
+
+        if(!checkValidField(key) || !checkValidField(password)) {
             return false;
         }
         if(map.containsKey(key)){
