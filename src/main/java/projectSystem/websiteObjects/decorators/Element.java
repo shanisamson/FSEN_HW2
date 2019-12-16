@@ -2,8 +2,14 @@ package projectSystem.websiteObjects.decorators;
 
 import projectSystem.intefaces.Component;
 
+/**
+ * Class Represents an Element the students can add to the website.
+ */
 public class Element extends Decorator {
 
+    /**
+     * Enum Represents the Type of Element
+     */
     public enum ElementType{
         AUDIO_FILE,
         LOGO,
@@ -19,10 +25,23 @@ public class Element extends Decorator {
         }
     }
 
+    /**
+     * String Represents the fileName
+     */
     private String fileName;
+    /**
+     * Element Type represents the type of this element.
+     */
     private ElementType type;
 
 
+    /**
+     * Default constructor
+     * @param wrappee           Component this element is Wrapping.
+     * @param isLimited         Boolean represents whether this Element is visible or not to some users.
+     * @param fileName          String represents the filename of this element.
+     * @param type              Element Type Represents the file type.
+     */
     public Element(Component wrappee, boolean isLimited, String fileName, ElementType type) {
         super(wrappee, isLimited);
         this.fileName = fileName;
@@ -30,6 +49,7 @@ public class Element extends Decorator {
     }
 
 
+    //region Getters and Setters
     public String getFileName() {
         return fileName;
     }
@@ -45,7 +65,12 @@ public class Element extends Decorator {
     public void setType(ElementType type) {
         this.type = type;
     }
+    //endregion Getters and Setters
 
+
+    /**
+     * Drawing the element in the web site.
+     */
     @Override
     public void drawComponent() {
         switch (type){
