@@ -25,7 +25,7 @@ public class DataManager implements Observer {
     private Map<Integer, Project> registeredProjects;
 
     /**
-     * List of approved Projects to show when Students tries to register tro project
+     * List of approved Projects to show when Students tries to register to project
      */
     private List<Project> approvedProjects;
 
@@ -225,7 +225,7 @@ public class DataManager implements Observer {
     }
 
     /**
-     * If the Given Subject(Project) is Approved, and does not exists in the list of approvved Project --> adds it
+     * If the Given Subject(Project) is Approved, and does not exists in the list of approved Project, adds it
      * the Update is occurs only if it's notified by the Subject(Project) it was listening to.
      *
      * @param changedSubject Subject that was Changed
@@ -241,4 +241,50 @@ public class DataManager implements Observer {
     }
 
 
+    /**
+     * FOR TESTS PURPOSES ONLY!
+     * Removes the given user from the database.
+     *
+     * @param user String represents a username to delete from the system.
+     */
+    public void _removeUser(String user) {
+        this.registeredAdvisors.remove(user);
+        this.registeredStudents.remove(user);
+    }
+
+    /**
+     * FOR TESTS PURPOSES ONLY!
+     * <p>
+     * Removes the given project from the system.
+     */
+    public void _removeProject(int projectId) {
+        Project p = this.registeredProjects.get(projectId);
+        this.approvedProjects.remove(p);
+        this.registeredProjects.remove(projectId);
+    }
+
+    /**
+     * FOR TESTS PURPOSES ONLY!
+     * <p>
+     * Removes the given student from the given project id.
+     */
+    public void _removeStudentFromProject(int projectId, String studentId) {
+        Project p = this.registeredProjects.get(projectId);
+        if (p != null) {
+            //if the project exists, remove the given student from it
+            p.removeStudent(studentId);
+        }
+    }
+
+    /**
+     * FOR TESTS PURPOSES ONLY!
+     * <p>
+     * Removes all the data saved in the system.
+     */
+    public void _clearAllData() {
+        this.registeredStudents.clear();
+        this.registeredAdvisors.clear();
+        this.approvedProjects.clear();
+        this.registeredProjects.clear();
+    }
 }

@@ -15,7 +15,7 @@ public interface Component {
      * Check if the given user is allowed to see the current Component.
      *
      * @param isLimited Boolean to decide whether this component is limited to "Advance Info Users" only.
-     *                  'true' -> the component is limited, 'false' -> open to everyone
+     *                  'true' means the component is limited, 'false' means open to everyone
      * @param userId    String represents the id of the user that want to see the component.
      * @return 'true' if the given user can see the component, 'false' otherwise.
      */

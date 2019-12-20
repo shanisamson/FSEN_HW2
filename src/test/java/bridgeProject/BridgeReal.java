@@ -15,7 +15,7 @@ public class BridgeReal implements BridgeProject {
 
     @Override
     public void registerNewTechnicalAdviser(String user, String password) {
-        dataManager.addTechnicalAdvisor(user,password);
+        dataManager.addTechnicalAdvisor(user, password);
     }
 
     @Override
@@ -34,4 +34,22 @@ public class BridgeReal implements BridgeProject {
     public int registerToProject(String user, String pass, DBRegisteredProjectInfo registeredProject) {
         return dataManager.registerProject(user, pass, registeredProject.projectId, registeredProject.studentList, registeredProject.academicAdviser);
     }
+
+    //region Functions For TearDown
+    public void clearAllDataFromSystem() {
+        this.dataManager._clearAllData();
+    }
+
+    public void removeStudentFromProject(int projectId, String studentId) {
+        this.dataManager._removeStudentFromProject(projectId, studentId);
+    }
+
+    public void removeProject(int projectId) {
+        this.dataManager._removeProject(projectId);
+    }
+
+    public void removeUser(String user) {
+        this.dataManager._removeUser(user);
+    }
+    //endregion Functions For TearDown
 }
