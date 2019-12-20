@@ -184,12 +184,13 @@ public class DataManager implements Observer {
 
     /**
      * Register students to a certain project if possible
-     * @param user              String represents the username.
-     * @param password          String represents the username.
-     * @param projectId         Integer Represents the code-number of the wanted project.
-     * @param studentList       List of Students id's(Strings) represents all the students participating in the project.
-     * @param academicAdviser   String represents the name of the academic advisor.
-     * @return    return the project id of the wanted project if the procedure was successful, '0' otherwise
+     *
+     * @param user            String represents the username.
+     * @param password        String represents the username.
+     * @param projectId       Integer Represents the code-number of the wanted project.
+     * @param studentList     List of Students id's(Strings) represents all the students participating in the project.
+     * @param academicAdviser String represents the name of the academic advisor.
+     * @return return the project id of the wanted project if the procedure was successful, '0' otherwise
      */
     public int registerProject(String user, String password,
                                int projectId, ArrayList<String> studentList, String academicAdviser) {
@@ -214,8 +215,9 @@ public class DataManager implements Observer {
         project.setAcademicAdviser(academicAdviser);
         for (String id : studentList) {
             if (!project.addStudent(id)) {
+                // student registered twice to the same project
                 project.clearStudentsList();
-                return 0; // student registered twice to the same project
+                return 0;
             }
         }
         return projectId;
@@ -223,15 +225,16 @@ public class DataManager implements Observer {
     }
 
     /**
-     *  If the Given Subject(Project) is Approved, and does not exists in the list of approvved Project --> adds it
-     *  the Update is occurs only if it's notified by the Subject(Project) it was listening to.
-     * @param changedSubject        Subject that was Changed
+     * If the Given Subject(Project) is Approved, and does not exists in the list of approvved Project --> adds it
+     * the Update is occurs only if it's notified by the Subject(Project) it was listening to.
+     *
+     * @param changedSubject Subject that was Changed
      */
     @Override
     public void update(Subject changedSubject) {
         if (changedSubject instanceof Project) {
             Project p = (Project) changedSubject;
-            if (p.getStatus()== Project.ProjectStatus.APPROVED &&!this.approvedProjects.contains(p)) {
+            if (p.getStatus() == Project.ProjectStatus.APPROVED && !this.approvedProjects.contains(p)) {
                 this.approvedProjects.add(p);
             }
         }

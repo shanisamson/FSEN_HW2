@@ -7,18 +7,22 @@ import projectSystem.intefaces.Component;
  */
 public class Style extends Decorator {
 
-    public enum Theme{
+    public enum Theme {
         DARK,
         LIGHT,
         BRAZIL,
         LAVENDER;
 
-        public String toString(){
-            switch(this){
-                case DARK: return "Dark";
-                case LIGHT: return "Light";
-                case BRAZIL: return "Brazil";
-                case LAVENDER: return "Lavender";
+        public String toString() {
+            switch (this) {
+                case DARK:
+                    return "Dark";
+                case LIGHT:
+                    return "Light";
+                case BRAZIL:
+                    return "Brazil";
+                case LAVENDER:
+                    return "Lavender";
 
             }
             return "UNKNOWN";
@@ -32,9 +36,10 @@ public class Style extends Decorator {
 
     /**
      * Default Constructor
-     * @param wrappee       Component that this Component needs to wrap.
-     * @param isLimited     Boolean represents whether this Component is visible or not to some users.
-     * @param theme         Theme Enum Represents the style that was chosen by the students for this style component
+     *
+     * @param wrappee   Component that this Component needs to wrap.
+     * @param isLimited Boolean represents whether this Component is visible or not to some users.
+     * @param theme     Theme Enum Represents the style that was chosen by the students for this style component
      */
     public Style(Component wrappee, boolean isLimited, Theme theme) {
         super(wrappee, isLimited);
@@ -42,10 +47,10 @@ public class Style extends Decorator {
     }
 
     /**
-     *  Drawing the style in the web site
+     * Drawing the style in the web site
      */
     @Override
     public void drawComponent() {
-        System.out.println(String.format("This WebSite is using the %s Style theme.",this.theme.toString()));
+        System.out.println(String.format("This WebSite is using the %s Style theme.", this.theme.toString()));
     }
 }

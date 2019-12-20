@@ -16,8 +16,9 @@ public class User {
 
     /**
      * Default constructor
-     * @param userName      String represents the username of the user.
-     * @param password      String represents the password of the user.
+     *
+     * @param userName String represents the username of the user.
+     * @param password String represents the password of the user.
      */
     public User(String userName, String password) {
         this.userName = userName;

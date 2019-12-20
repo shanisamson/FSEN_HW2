@@ -17,25 +17,26 @@ public abstract class Decorator implements Component {
 
     /**
      * Default constructor
-     * @param wrappee       Component that this Component needs to wrap.
-     * @param isLimited     Boolean represents whether this Component is visible or not to some users.
+     *
+     * @param wrappee   Component that this Component needs to wrap.
+     * @param isLimited Boolean represents whether this Component is considered "Advance Info" for users.
      */
-    public Decorator(Component wrappee,boolean isLimited) {
+    public Decorator(Component wrappee, boolean isLimited) {
         this.wrappee = wrappee;
         this.isLimited = isLimited;
     }
 
     /**
      * Show visuals of the component, if possible.
-     * @param userId            String represents the user ID , to decide whether to show this component or not.
+     *
+     * @param userId String represents the user ID , to decide whether to show this component or not.
      */
     @Override
     public void show(String userId) {
         wrappee.show(userId);
-        if(isAllowed(this.isLimited,userId)){
+        if (isAllowed(this.isLimited, userId)) {
             drawComponent();
-        }
-        else{
+        } else {
             //not printing because the user is not allowed to see this component
         }
 
@@ -44,10 +45,10 @@ public abstract class Decorator implements Component {
     /**
      * Check if the given user is allowed to see the current Component.
      *
-     * @param isLimited          Boolean to decide whether this component is limited to "registered to the project" only.
-     *                           'true' -> the compponent is limited, 'false' -> open to everyone
-     * @param userId             String represents the id of the user that want to see the component.
-     * @return  'true' if the given user can see the component, 'false' otherwise.
+     * @param isLimited Boolean to decide whether this component is limited to "registered to the project" only.
+     *                  'true' -> the component is limited, 'false' -> open to everyone
+     * @param userId    String represents the id of the user that want to see the component.
+     * @return 'true' if the given user can see the component, 'false' otherwise.
      */
     @Override
     public boolean isAllowed(boolean isLimited, String userId) {

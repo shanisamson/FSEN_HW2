@@ -16,11 +16,11 @@ public class BasicWebsite implements Component {
      */
     private boolean limited;
 
-
     /**
      * default Constructor
-     * @param project           Project this website is showing
-     * @param limited           Boolean represents whether this website is visible to all users or just to some of them
+     *
+     * @param project Project this website is showing
+     * @param limited Boolean represents whether this website is visible to all users or just to some of them
      */
     public BasicWebsite(Project project, boolean limited) {
         this.project = project;
@@ -29,14 +29,14 @@ public class BasicWebsite implements Component {
 
     /**
      * Show visuals of the website, if possible.
-     * @param userId            String represents the user ID , to decide whether to show this component or not.
+     *
+     * @param userId String represents the user ID , to decide whether to show this component or not.
      */
     @Override
     public void show(String userId) {
-        if(isAllowed(this.limited,userId)){
-            System.out.println(String.format("Displaying WebSite of project %s",this.project.getProjectName()));
-        }
-        else{
+        if (isAllowed(this.limited, userId)) {
+            System.out.println(String.format("Displaying WebSite of project %s", this.project.getProjectName()));
+        } else {
             System.out.println("ACCESS DENIED");
         }
 
@@ -45,16 +45,20 @@ public class BasicWebsite implements Component {
     /**
      * Check if the given user is allowed to see the current Component.
      *
-     * @param isLimited          Boolean to decide whether this component is limited to "registered to the project" only.
-     *                           'true' -> the compponent is limited, 'false' -> open to everyone
-     * @param userId             String represents the id of the user that want to see the component.
-     * @return  'true' if the given user can see the component, 'false' otherwise.
+     * @param isLimited Boolean to decide whether this component is limited to "registered to the project" only.
+     *                  'true' -> the component is limited, 'false' -> open to everyone
+     * @param userId    String represents the id of the user that want to see the component.
+     * @return 'true' if the given user can see the component, 'false' otherwise.
      */
     @Override
     public boolean isAllowed(boolean isLimited, String userId) {
-        if(!isLimited || project.getStudentList().contains(userId)){
+        if (!isLimited || project.getAdvanceWebsiteInfoAllowedStudents().contains(userId)) {
+            //if the Component is not limited to Advance students users only
+            // OR
+            // The given id is of a advance user --> allow access
             return true;
+        } else {
+            return false;
         }
-        else return false;
     }
 }

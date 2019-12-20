@@ -6,12 +6,14 @@ package projectSystem.intefaces;
 public interface Subject {
     /**
      * Adding the given Observer to the list of observers to notify when subject is changing
+     *
      * @param o Observer to add to the list of objects to notify.
      */
     void attach(Observer o);
 
     /**
      * Removes the given Observer from the list of objects to notify.
+     *
      * @param o Observer to remove from the list of objects to notify.
      */
     void detach(Observer o);

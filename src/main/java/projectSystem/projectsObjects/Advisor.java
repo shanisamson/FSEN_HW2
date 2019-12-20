@@ -11,8 +11,9 @@ public class Advisor extends User {
 
     /**
      * Default constructor
-     * @param userName          String represents the user name of the advisor.
-     * @param password          String represents the password of the advisor.
+     *
+     * @param userName String represents the user name of the advisor.
+     * @param password String represents the password of the advisor.
      */
     public Advisor(String userName, String password) {
         super(userName, password);
@@ -21,9 +22,10 @@ public class Advisor extends User {
 
     /**
      * Another Constructor
-     * @param userName          String represents the user name of the advisor.
-     * @param password          String represents the password of the advisor.
-     * @param name              String represents the actual name of the advisor.
+     *
+     * @param userName String represents the user name of the advisor.
+     * @param password String represents the password of the advisor.
+     * @param name     String represents the actual name of the advisor.
      */
     public Advisor(String userName, String password, String name) {
         super(userName, password);

@@ -7,7 +7,8 @@ package projectSystem.intefaces;
 public interface Observer {
     /**
      * React and update the current object state (if necessary) after it's notified by the Subject it was listening to.
-     * @param changedSubject        Subject that was Changed
+     *
+     * @param changedSubject Subject that was Changed
      */
     void update(Subject changedSubject);
 }

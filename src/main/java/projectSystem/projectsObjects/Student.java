@@ -31,17 +31,18 @@ public class Student extends User implements Observer {
 
     /**
      * Default Constructor
-     * @param userName      String represents the UserName of the Student
-     * @param password      String represents the password of the Student
-     * @param id            String represents the id of the student
+     *
+     * @param userName String represents the UserName of the Student
+     * @param password String represents the password of the Student
+     * @param id       String represents the id of the student
      */
-    public Student(String userName, String password,String id) {
+    public Student(String userName, String password, String id) {
         super(userName, password);
         this.id = id;
         this.sendNotificationByEmail = false;
         this.sendNotificationBySMS = false;
-        this.email="";
-        this.phone="";
+        this.email = "";
+        this.phone = "";
     }
 
     //region Getters and Setters
@@ -86,14 +87,15 @@ public class Student extends User implements Observer {
 
     /**
      * React and update the current object state (if necessary) after it's notified by the Subject it was listening to.
-     * @param changedSubject        Subject that was Changed
+     *
+     * @param changedSubject Subject that was Changed
      */
     @Override
     public void update(Subject changedSubject) {
-        if(changedSubject instanceof Project){
-            Project p = (Project)changedSubject;
-            if (p.getStatus() == Project.ProjectStatus.APPROVED){
-                MessageService.sendMessage(this,p);
+        if (changedSubject instanceof Project) {
+            Project p = (Project) changedSubject;
+            if (p.getStatus() == Project.ProjectStatus.APPROVED) {
+                MessageService.sendMessage(this, p);
             }
         }
     }
